@@ -37,7 +37,7 @@ como N:M y no como composición?
 ¿Por qué `Modelo` **depende** de `MetricaEvaluacion` en lugar de **tenerlo**
 como atributo? ¿Qué ventaja tiene pasar el servicio como parámetro?
 
-> _Tu respuesta:_ como Modelo solo necesita MetricaEvaluacion de forma puntual no tiene sentido guardarlo como atributo porque eso lo convertiria en una parte permanente del modelo. La ventaja es que al recibirlo como parametro hay menos acoplamiento que significa quye el modelo no es responsable de crear servicio.
+> _Tu respuesta:_ como Modelo solo necesita MetricaEvaluacion de forma puntual no tiene sentido guardarlo como atributo porque eso lo convertiria en una parte permanente del modelo. La ventaja es que al recibirlo como parametro hay menos acoplamiento que significa quye el modelo no es responsable de crear servicio y se puede cambiar la metrica sin modificar Modelo.
 
 ---
 
@@ -48,4 +48,4 @@ En este proyecto se usan dos estructuras distintas:
 
 Explica por qué en cada caso se eligió esa estructura y no la otra.
 
-> _Tu respuesta:_ int[] lossPorEpoca se eligio porque el numero de epocas es fijo y ya se conoce, por lo que un arreglo de tamaño definido es simple y eficiente en memoria. En cambio, ArrayList<Experimento> se eligio porque la cantidad de experimentos de una plataforma no se conoce desde antes y va creciendo con agregarExperimento() y el ArrayList se redimensiona solito.
+> _Tu respuesta:_ int[] lossPorEpoca se eligio porque el numero de epocas es fijo y ya se conoce, por lo que un arreglo de tamaño definido es simple y eficiente en memoria. En cambio, ArrayList<Experimento> se eligio porque la cantidad de experimentos de una plataforma no se conoce desde antes y va creciendo con agregarExperimento() y el ArrayList se redimensiona solito. Usar un arreglo ahí obligaria a manejar el tamaño manualmente, y usar un ArrayList para el loss agregaria objetos innecesarios.
