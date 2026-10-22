@@ -14,10 +14,16 @@ public class ModeloRNN extends Modelo {
         this.numCapas = numCapas;
     }
 
+
     @Override
     public double entrenar(Dataset dataset) {
-        // TODO: implementar
-        return 0;
+        int loss = 50 + numCapas * 10;  //crea el loss inicial
+        int epocas = getLossPorEpoca().length; //pregunta la capacidad maxima del historial
+        for (int i = 0; i < epocas; i++) { //se repite "epocas" veces
+            registrarEpoca(loss); // guarda el loss actual
+            loss = Math.max(1, loss - 5); // resta 5
+        }
+        return mejorLoss();
     }
 
     public int getNumCapas() { return numCapas; }

@@ -23,8 +23,13 @@ public class ModeloCNN extends Modelo {
      */
     @Override
     public double entrenar(Dataset dataset) {
-        // TODO: implementar
-        return 0;
+        int loss = Math.max(1, numFiltros * 10); //crea el loss inicial
+        int epocas = getLossPorEpoca().length; //pregunta la capacidad maxima del historial
+        for (int i = 0; i < epocas; i++) { //se repite "epocas" veces
+            registrarEpoca(loss); // guarda el loss actual
+            loss = Math.max(1, (int) (loss * 0.8)); // multiplica por 0.8
+        }
+        return mejorLoss();
     }
 
     public int getNumFiltros() { return numFiltros; }

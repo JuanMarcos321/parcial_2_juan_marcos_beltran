@@ -32,11 +32,11 @@ public abstract class Modelo {
      * actualiza el mejor loss pero no agrega más elementos.
      */
     public void registrarEpoca(int loss) {
-        if (epocaActual < lossPorEpoca.length) {
-            lossPorEpoca[epocaActual] = loss;
-            epocaActual++;
+        if (epocaActual < lossPorEpoca.length) { // hay casilla libre?
+            lossPorEpoca[epocaActual] = loss; // guardo en esa casilla
+            epocaActual++;  // el cursor avanza
         }
-        if (loss < mejorLossRegistrado){
+        if (loss < mejorLossRegistrado){ // ¿es el mejor visto?
             mejorLossRegistrado = loss;
         }
     }

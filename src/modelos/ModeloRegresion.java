@@ -16,8 +16,13 @@ public class ModeloRegresion extends Modelo {
 
     @Override
     public double entrenar(Dataset dataset) {
-        // TODO: implementar
-        return 0;
+        int loss = 40 + grado * 5; //crea el loss inicial
+        int epocas = getLossPorEpoca().length; //pregunta la capacidad maxima del historial
+        for (int i = 0; i < epocas; i++) {  //se repite "epocas" veces
+            registrarEpoca(loss); // guarda el loss actual
+            loss = Math.max(1, loss / 2); // divide el loss entre 2
+        }
+        return mejorLoss();
     }
 
     public int getGrado() { return grado; }
