@@ -18,15 +18,26 @@ public class Plataforma {
 
     /** Agrega un experimento ya existente (agregación). */
     public void agregarExperimento(Experimento experimento) {
-        // TODO: implementar
+        if (experimento != null) {
+            experimentos.add(experimento);
+        }
     }
 
     /**
      * Reporte: una línea por experimento con su id y el mejor loss de su modelo.
      */
     public List<String> reporteMejorLoss() {
-        // TODO: implementar
-        return new ArrayList<>();
+        List<String> reporte = new ArrayList<>();
+        for (Experimento e : experimentos) {
+            if (e.getModelo() == null) {
+                reporte.add(e.getId() + " - sin modelo");
+            } else if (e.getModelo().mejorLoss() == Integer.MAX_VALUE) {
+                reporte.add(e.getId() + " - sin entrenar");
+            } else {
+                reporte.add(e.getId() + " - mejor loss: " + e.getModelo().mejorLoss());
+            }
+        }
+        return reporte;
     }
 
     public String getNombre() { return nombre; }
